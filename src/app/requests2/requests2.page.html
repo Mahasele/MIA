@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Requests
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dash"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let request of requests">
+      <ion-label>{{ request.request }}</ion-label>
+      <ion-badge color="primary">{{ request.status }}</ion-badge>
+      <ion-button *ngIf="request.status === 'Pending'">Approve</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+

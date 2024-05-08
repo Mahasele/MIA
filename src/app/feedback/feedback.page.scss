@@ -1,0 +1,23 @@
+
+  ion-header {
+    ion-toolbar {
+      --background: maroon; /* Set background color to maroon */
+    }
+  }
+  
+  ion-content {
+    display: flex; /* Use flexbox */
+    justify-content: center;
+    --background: maroon; /* Align content horizontally to the center */
+    align-items: center; /* Align content vertically to the center */
+    height: 80vh; /* Set content height to full viewport height */
+  }
+  
+  ion-list {
+    max-width: 400px; /* Optional: Set maximum width for the list */
+    width: 100%;
+    align-items: center; /* Make sure the list takes full width of its container */
+  }
+  ion-button{
+    --background:rgb(235, 147, 147);
+  }

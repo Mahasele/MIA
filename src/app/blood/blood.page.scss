@@ -1,0 +1,16 @@
+.request-button {
+    position: fixed;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 90%;
+  }
+  ion-content {
+    display: flex; /* Use flexbox */
+    justify-content: center;
+    --background: rgb(235, 108, 108); /* Align content horizontally to the center */
+    align-items: center; /* Align content vertically to the center */
+    height: 80vh; /* Set content height to full viewport height */
+  }
+  

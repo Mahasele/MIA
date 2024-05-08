@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>dash</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="content">
+  <div class="dashboard">
+    <ion-searchbar></ion-searchbar> <!-- Added search feature -->
+    <div class="icon" (click)="navigateToSettings()">
+      <ion-icon name="settings" size="large"></ion-icon>
+      <span>Settings</span>
+    </div>
+    <div class="icon" (click)="navigateToUsers()">
+      <ion-icon name="people" size="large"></ion-icon>
+      <span>Users</span>
+    </div>
+    <div class="icon" (click)="navigateToRequests()">
+      <ion-icon name="document" size="large"></ion-icon>
+      <span>Requests</span>
+    </div>
+    <div class="icon" (click)="navigateToEducation()">
+      <ion-icon name="school" size="large"></ion-icon>
+      <span>Education</span>
+    </div>
+    <div class="icon" (click)="navigateToMatches()">
+      <ion-icon name="heart" size="large"></ion-icon>
+      <span>Matches</span>
+    </div>
+  </div>
+  <img src="assets/images/Bk.jpg" class="background-image" alt="Background Image">
+</ion-content>

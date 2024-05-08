@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dash"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Admin Settings
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Form for configuring settings -->
+  <ion-card>
+    <ion-card-header>
+      General Settings
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Form controls for changing theme, font size, colors, etc. -->
+      <!-- Example: Change theme -->
+      <ion-item>
+        <ion-label>Theme</ion-label>
+        <ion-select [(ngModel)]="selectedTheme">
+          <ion-select-option value="light">Light</ion-select-option>
+          <ion-select-option value="dark">Dark</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Example: Change font size -->
+      <ion-item>
+        <ion-label>Font Size</ion-label>
+        <ion-range [(ngModel)]="fontSize" min="1" max="5" step="1">
+          <ion-icon size="small" slot="start" name="text"></ion-icon>
+          <ion-icon slot="end" name="text"></ion-icon>
+        </ion-range>
+      </ion-item>
+
+      <!-- Other settings controls -->
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Edit profile button -->
+  <ion-button expand="block" (click)="editProfile()">Edit Profile</ion-button>
+</ion-content>
+

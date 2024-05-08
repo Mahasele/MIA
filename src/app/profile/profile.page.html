@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ requestData.title }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Blood Type Required:</strong> {{ requestData.bloodType }}</p>
+      <p><strong>Urgency:</strong> {{ requestData.urgency }}</p>
+      <p><strong>Location:</strong> {{ requestData.location }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

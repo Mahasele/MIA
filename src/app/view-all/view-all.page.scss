@@ -1,0 +1,13 @@
+ion-content {
+    --background: maroon;
+  }
+  
+  ion-card {
+    margin-bottom: 20px;
+  }
+  
+  ion-card ion-img {
+    max-width: 100%;
+    height: 200px; /* Adjust height as needed */
+    object-fit: cover;
+  }

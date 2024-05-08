@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Matching Donors</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let donor of matchedDonors">
+      <ion-label>
+        <h2>{{ donor.name }}</h2>
+        <p><strong>Blood Type:</strong> {{ donor.bloodType }}</p>
+        <p><strong>Contact:</strong> {{ donor.contact }}</p>
+        <p><strong>Location:</strong> {{ donor.location }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
+  <ion-button expand="block" (click)="navigateToBloodPage()">Find match in Requests</ion-button>
+</ion-content>

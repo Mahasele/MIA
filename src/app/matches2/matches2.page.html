@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Donors by Blood Group
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let group of groupedDonors">
+      <ion-label>
+        <h2>{{ group.bloodGroup }}</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngFor="let group of groupedDonors">
+      <ion-list>
+        <ion-item *ngFor="let donor of group.donors">
+          <ion-label>
+            <h3>Name: {{ donor.name }}</h3>
+            <p>Email: {{ donor.email }}</p>
+            <p>Gender: {{ donor.gender }}</p>
+            <p>Contact: {{ donor.contacts }}</p>
+            
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+  </ion-list>
+  
+  <ion-footer>
+    <ion-toolbar>
+      <ion-button expand="block" (click)="navigateToRequests2()">Check Requests</ion-button>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>
+
+

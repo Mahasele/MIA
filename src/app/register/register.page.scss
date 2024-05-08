@@ -1,0 +1,11 @@
+ion-content {
+    --background: rgb(173, 10, 10);
+  }
+  
+  /* Decrease the size of the date of birth field */
+  .item-dob ion-datetime {
+    font-size: 5px; /* Adjust the font size as needed */
+  }
+  ion-button{
+    --background:rgb(179, 35, 35);
+  }

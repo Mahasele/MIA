@@ -1,0 +1,49 @@
+
+Copy code
+ion-content {
+  --ion-background-color: maroon; 
+}
+ion-content {
+    --background: rgb(247, 119, 119);
+  }
+  
+ion-button {
+  --ion-color: maroon; 
+}
+ion-button{
+    --background:rgb(148, 19, 19);
+  }
+
+ion-item {
+  --ion-background-color: transparent; 
+  --ion-border-color: maroon; 
+}
+
+ion-label {
+  color: rgb(133, 5, 5); 
+}
+
+ion-textarea {
+  --padding-start: 10px; 
+  --padding-end: 10px; 
+  --border-radius: 5px; 
+  border-color: maroon; 
+  color: maroon; 
+}
+
+ion-select {
+  --padding-start: 0; 
+  --padding-end: 0; 
+  --border-radius: 0; 
+  border-color: maroon; 
+  color: maroon; 
+}
+
+ion-radio {
+  --color-checked: maroon; 
+}
+
+ion-radio-group {
+  --padding-start: 0; 
+  --padding-end: 0; 
+}

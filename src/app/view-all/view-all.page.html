@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Back button to navigate to the login page -->
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Upcoming Events</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="--background: maroon;">
+  <!-- Dropdown menu for navigation options -->
+  <ion-item>
+    <ion-label>Go to</ion-label>
+    <ion-select (ionChange)="navigateTo($event.detail.value)">
+      <ion-select-option value="blood-requests">Blood Requests</ion-select-option>
+      <ion-select-option value="matching">Matching-Donors</ion-select-option>
+      <ion-select-option value="education">Tips on Donation</ion-select-option>
+      <ion-select-option value="feedback">Feedback</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <!-- Main content area -->
+  <ion-card *ngFor="let event of upcomingEvents" (click)="viewEventDetails(event)">
+    <ion-card-header>
+      <ion-card-title>{{ event.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Unique picture for each event -->
+      <ion-img [src]="event.image" alt="Event Image"></ion-img>
+      <p><strong>Date:</strong> {{ event.date }}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
