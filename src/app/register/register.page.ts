@@ -92,7 +92,7 @@ export class RegisterPage {
       this.hospitalName = "";
       this.district = "";
       this.hospitalContact = "";
-  
+        
       // Redirect to login page
       this.navCntrl.navigateBack('login');
     } catch (error) {
