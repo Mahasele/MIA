@@ -1,19 +1,184 @@
 <ion-header>
   <ion-toolbar>
+    <ion-button slot="start" class="ion-no-padding">
+      <ion-back-button [defaultHref]="'/dashboard/'+id"></ion-back-button>
+    </ion-button>
     <ion-title>Profile Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ requestData.title }}</ion-card-title>
-    </ion-card-header>
+  <ion-item>
+    <ion-label>Register as:</ion-label>
+    <ion-select [(ngModel)]="userType" interface="popover">
+      <ion-select-option value="individual">Individual</ion-select-option>
+      <ion-select-option value="hospital">Hospital/Blood Bank</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div *ngIf="userType === 'individual'">
+    <!-- Donor registration fields -->
+    <ion-item>
+      <ion-label position="floating" aria-label="Name">Name</ion-label>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && !name">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Name is required.</ion-text>
+    </ion-item>
 
-    <ion-card-content>
-      <p><strong>Blood Type Required:</strong> {{ requestData.bloodType }}</p>
-      <p><strong>Urgency:</strong> {{ requestData.urgency }}</p>
-      <p><strong>Location:</strong> {{ requestData.location }}</p>
-    </ion-card-content>
-  </ion-card>
+    <!-- Email -->
+    <ion-item>
+      <ion-label position="floating" aria-label="Email">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && email === ''">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Email is required.</ion-text>
+    </ion-item>
+
+    <!-- Date of Birth -->
+    <ion-item>
+      <ion-label position="floating" class="date" aria-label="Date of Birth">Date of Birth</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dob"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && !dob">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Date of Birth is required.</ion-text>
+    </ion-item>
+
+    <!-- Gender -->
+    <ion-item>
+      <ion-label aria-label="Gender">Gender</ion-label>
+      <ion-select [(ngModel)]="gender" interface="popover">
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="female">Female</ion-select-option>
+        <ion-select-option value="other">Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && !gender">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Gender is required.</ion-text>
+    </ion-item>
+
+    <!-- Blood Group -->
+    <ion-item>
+      <ion-label aria-label="Blood Group">Blood Group</ion-label>
+      <ion-select [(ngModel)]="bloodGroup" interface="popover">
+        <!-- Blood Group options -->
+        <ion-select-option value="A+">A+</ion-select-option>
+        <ion-select-option value="A-">A-</ion-select-option>
+        <ion-select-option value="B+">B+</ion-select-option>
+        <ion-select-option value="B-">B-</ion-select-option>
+        <ion-select-option value="AB+">AB+</ion-select-option>
+        <ion-select-option value="AB-">AB-</ion-select-option>
+        <ion-select-option value="O+">O+</ion-select-option>
+        <ion-select-option value="O-">O-</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && !bloodGroup">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Blood Group is required.</ion-text>
+    </ion-item>
+
+    <!-- Contacts -->
+    <ion-item>
+      <ion-label position="floating" aria-label="Contacts">Contacts</ion-label>
+      <ion-input type="tel" [(ngModel)]="contacts"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && contacts === ''">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Contacts are required.</ion-text>
+    </ion-item>
+
+    <!-- Password -->
+    <ion-item>
+      <ion-label position="floating" aria-label="Password">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && password === ''">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Password is required.</ion-text>
+    </ion-item>
+
+    <!-- Confirm Password -->
+    <ion-item>
+      <ion-label position="floating" aria-label="Confirm Password">Confirm Password</ion-label>
+      <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && confirmPassword === ''">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Confirm Password is required.</ion-text>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && confirmPassword !== '' && password !== confirmPassword">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Passwords do not match.</ion-text>
+    </ion-item>
+
+    <!-- Register button -->
+    <ion-button (click)="'register()'" expand="block">Save</ion-button>
+  </div>
+
+  <div *ngIf="userType === 'hospital'">
+    <!-- Hospital registration fields -->
+    <!-- Name -->
+    <ion-item>
+      <ion-label position="floating" aria-label="Hospital Name">Name:</ion-label>
+      <ion-input type="text" [(ngModel)]="hospitalName"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && !hospitalName">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Hospital/Bloodbank Name is required.</ion-text>
+    </ion-item>
+
+    <!-- Email -->
+    <ion-item>
+      <ion-label position="floating" aria-label="Email">Email:</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && email === ''">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Hospital/Bloodbank Email is required.</ion-text>
+    </ion-item>
+
+    <!-- District -->
+    <ion-item>
+      <ion-label>Address:</ion-label>
+      <ion-select [(ngModel)]="district" interface="popover">
+        <!-- District options -->
+        <ion-select-option value="MASERU">MASERU</ion-select-option>
+        <ion-select-option value="MOKHOTLONG">MOKHOTLONG</ion-select-option>
+        <ion-select-option value="QACHA'SNEK">QACHA'SNEK</ion-select-option>
+        <ion-select-option value="QUTHING">QUTHING</ion-select-option>
+        <ion-select-option value="MAFETENG">MAFETENG</ion-select-option>
+        <ion-select-option value="BOTHABUTHE">BUTHABUTHE</ion-select-option>
+        <ion-select-option value="LERIBE">LERIBE</ion-select-option>
+        <ion-select-option value="BEREA">BEREA</ion-select-option>
+        <ion-select-option value="THABA TSEKA">THABA TSEKA</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && district === ''">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Hospital/Bloodbank Address is required.</ion-text>
+    </ion-item>
+
+    <!-- Contact Number -->
+    <ion-item>
+      <ion-label position="floating" aria-label="Contact Number">Contact Number:</ion-label>
+      <ion-input type="tel" [(ngModel)]="hospitalContact"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerClicked && hospitalContact === ''">
+      <ion-icon name="alert-circle" slot="start" color="danger"></ion-icon>
+      <ion-text color="danger">Hospital/Bloodbank Contact Number is required.</ion-text>
+    </ion-item>
+
+    
+      
+      
+    
+    
+
+    <!-- Register button -->
+    <ion-button (click)="''" expand="block">Save</ion-button>
+  </div>
+
 </ion-content>

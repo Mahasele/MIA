@@ -1,23 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
-    </ion-buttons>
+    <ion-button slot="start">
+      <ion-back-button [defaultHref]="'/dashboard/'+id"></ion-back-button>
+    </ion-button>
     <ion-title>Find A match</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-row class="ion-padding-vertical chips">
+    <ion-chip *ngFor="let check of registrationTypes; let i =index"
+      [ngClass]="check.value===selectedType.value ?'active':'inactive'"
+      (click)="checkSelectedType({i,value:check.value})">{{check.title}}</ion-chip>
+  </ion-row>
   <ion-list>
-    <ion-item *ngFor="let request of filteredRequests" (click)="showProfile(request)">
+    <ion-item *ngFor="let request of filteredRequests">
       <ion-label>
-        <h2>{{ request.title }}</h2>
+        <h2>{{request.requestType==='donor'?'Donor: '+request.name:'Recipient: '+request.name}}</h2>
         <p><strong>Blood Type Required:</strong> {{ request.bloodType }}</p>
-        <p><strong>Urgency:</strong> {{ request.urgency }}</p>
-        <p><strong>Location:</strong> {{ request.location }}</p>
+        <p><strong>Location:</strong> {{ request.requestLocation }}</p>
+        <p><strong>Date:</strong> {{ request.requestDate}}</p>
+        <ion-button expand="block" color="danger" (click)="request.requestType==='donor'?requestBlood(request):donate(request)">{{request.requestType==='donor'?'Request':'Donate'}}</ion-button>
+        <ion-button expand="block" color="success" (click)="phone(request.contact)">Call</ion-button>
       </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
 
-<ion-button expand="block" class="request-button" (click)="navigateToRequestPage()">Request</ion-button>
+<ion-button expand="block" class="request-button" color="dark" (click)="navigateToRequestPage()">Create New Request</ion-button>

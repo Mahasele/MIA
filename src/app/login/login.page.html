@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar>
+    <ion-button slot="start" class="ion-no-padding">
+        <ion-back-button defaultHref="/login"></ion-back-button>
+      </ion-button>
     <ion-title>
-      DONATE_BLOOD
+      Login
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +20,7 @@
     <ion-input type="email" [(ngModel)]="email"></ion-input>
   </ion-item>
 
-  <ion-item>
+  <ion-item class="ion-margin-bottom">
     <ion-label position="floating">Password</ion-label>
     <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>

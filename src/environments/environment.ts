@@ -1,20 +1,30 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAnKwzIN1UQhezffGRb15xm4eG5MIaTNTY",
+//   authDomain: "khezwa-4b701.firebaseapp.com",
+//   projectId: "khezwa-4b701",
+//   storageBucket: "khezwa-4b701.appspot.com",
+//   messagingSenderId: "862444594766",
+//   appId: "1:862444594766:web:22a372b7e5d1a6b928451f",
+//   measurementId: "G-HGT3TGE78W"
+// };
 const firebaseConfig = {
-  apiKey: "AIzaSyAnKwzIN1UQhezffGRb15xm4eG5MIaTNTY",
-  authDomain: "khezwa-4b701.firebaseapp.com",
-  projectId: "khezwa-4b701",
-  storageBucket: "khezwa-4b701.appspot.com",
-  messagingSenderId: "862444594766",
-  appId: "1:862444594766:web:22a372b7e5d1a6b928451f",
-  measurementId: "G-HGT3TGE78W"
+  apiKey: "AIzaSyDMeStz4hV5ttA8QzmBCXrbODerjIk7NWU",
+  authDomain: "miaendass.firebaseapp.com",
+  projectId: "miaendass",
+  storageBucket: "miaendass.appspot.com",
+  messagingSenderId: "67328115149",
+  appId: "1:67328115149:web:2782fdbb87d3c8c3d4c484",
+  measurementId: "G-YJ7MTH82BG"
 };
 
 
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig
 };
 
 /*

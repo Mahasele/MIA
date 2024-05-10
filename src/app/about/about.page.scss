@@ -1,0 +1,37 @@
+// about.page.scss
+ion-toolbar{
+    --background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    ion-button{
+        --box-shadow: none;
+        --background:transparent;
+    }
+    ion-title{
+        color: #fff;
+    }
+}
+
+
+h1,
+h2 {
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b)
+}
+
+p {
+    text-align: justify;
+}
+
+ion-card {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+ion-card-title {
+    font-weight: bold;
+}
+
+ion-card-subtitle {
+    color: #666;
+}

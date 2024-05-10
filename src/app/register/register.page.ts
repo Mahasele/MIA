@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore'; // Import AngularFirestore
+import { AngularFireAuth } from '@angular/fire/compat/auth'; // Import AngularFireAuth
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+ // Import AngularFirestore
 
 @Component({
   selector: 'app-signup',
@@ -26,7 +27,7 @@ export class RegisterPage {
 
   constructor(
     public navCntrl: NavController,
-    private auth: Auth,
+    private auth: AngularFireAuth,
     private firestore: AngularFirestore // Inject AngularFirestore
   ) {}
 
@@ -52,15 +53,15 @@ export class RegisterPage {
       return;
     }
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        this.auth,
+      const userCredential = await this.auth.createUserWithEmailAndPassword(
         this.email,
         this.password
       );
   
       // Save user data to Firestore
-      if (this.userType === 'donor') {
-        await this.firestore.collection('donors').doc(userCredential.user.uid).set({
+        await this.firestore.collection('users').doc(userCredential.user?.uid).set(
+          this.userType === 'individual' ?
+          {
           name: this.name,
           email: this.email,
           dob: this.dob,
@@ -68,16 +69,16 @@ export class RegisterPage {
           bloodGroup: this.bloodGroup,
           contacts: this.contacts,
           userType: this.userType // Include userType field
-        });
-      } else if (this.userType === 'hospital') {
-        await this.firestore.collection('hospitals').doc(userCredential.user.uid).set({
+        }
+        : 
+        {
           name: this.hospitalName,
           email: this.email,
           district: this.district,
           contact: this.hospitalContact,
           userType: this.userType // Include userType field
         });
-      }
+      
   
       // Reset form fields
       this.name = "";

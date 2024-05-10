@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FirebaseServiceService } from '../firebase.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +11,11 @@ export class DashboardPage implements OnInit {
 
   upcomingEvents: any[] = [];
    
-
-  constructor(private router: Router) { }
+  userId
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,private fire:FirebaseServiceService) {
+    this.userId = activatedRoute.snapshot.params['userId']
+    console.log(this.userId)
+   }
 
   ngOnInit() {
     
@@ -24,17 +28,19 @@ export class DashboardPage implements OnInit {
 
   viewEventDetails(event: any) {
    
-    this.router.navigate(['/request'], { state: { event: event } });
+    this.router.navigate(['dashboard/', this.userId,'/request'], { state: { event: event } });
   }
 
   createEvent() {
-   
-    this.router.navigate(['/create-event']);
+    this.router.navigate(['dashboard/',this.userId,'/create-event']);
   }
 
   navigateTo(page: string) {
    
     this.router.navigate([`/${page}`]);
+  }
+  logout(){
+    this.fire.logout()
   }
 
 }

@@ -1,23 +1,76 @@
 
   ion-header {
     ion-toolbar {
-      --background: maroon; /* Set background color to maroon */
+      --background: maroon;
+      color: #fff;
+      ion-button {
+          --background: transparent;
+          --box-shadow: none;
+        } /* Set background color to maroon */
     }
+
   }
   
   ion-content {
     display: flex; /* Use flexbox */
     justify-content: center;
-    --background: maroon; /* Align content horizontally to the center */
     align-items: center; /* Align content vertically to the center */
-    height: 80vh; /* Set content height to full viewport height */
+    form {
+      width: 100%;
+      ion-input {
+        width: 100%;
+        padding: 5px 15px;
+        border: none;
+        --highlight-color-focused: grey;
+        caret-color: black;
+        --highlight-height: 0;
+      }
+  
+      ion-textarea {
+        border: 2px solid grey;
+        border-radius: 5px;
+        margin-top: 10px;
+        width: 100%;
+        padding: 8px 15px;
+        --highlight-height: 0;
+      }
+  
+      ion-button {
+        border-radius: 5px;
+        padding: 5px 0;
+        --padding-top: 5px;
+        --padding-bottom: 5px;
+      }
+  
+      ion-title {
+        width: 100%;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+  
+      .wrap {
+        margin: 10px 0 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        border: 2px solid grey;
+        gap: 8px;
+  
+        ion-icon {
+          font-size: 2.2em;
+          border-right: 2px solid grey;
+          padding: 0 5px;
+        }
+      }
+            ion-button {
+              --background: maroon;
+            }
+  
+    }
   }
   
-  ion-list {
-    max-width: 400px; /* Optional: Set maximum width for the list */
-    width: 100%;
-    align-items: center; /* Make sure the list takes full width of its container */
-  }
-  ion-button{
-    --background:rgb(235, 147, 147);
-  }
+  
+  
+    

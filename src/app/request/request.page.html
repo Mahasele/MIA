@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-toolbar color="maroon">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
-    </ion-buttons>
+  <ion-toolbar>
+    <ion-button slot="start">
+      <ion-back-button [defaultHref]="'/dashboard/'+id"></ion-back-button>
+    </ion-button>
     <ion-title>Request Blood</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -21,34 +21,38 @@
 
     <ion-item>
       <ion-label position="floating">Blood Type</ion-label>
-      <ion-select [(ngModel)]="bloodType" name="bloodType" required>
-        <ion-select-option value="A+">A+</ion-select-option>
-        <ion-select-option value="A-">A-</ion-select-option>
-        <ion-select-option value="B+">B+</ion-select-option>
-        <ion-select-option value="B-">B-</ion-select-option>
-        <ion-select-option value="AB+">AB+</ion-select-option>
-        <ion-select-option value="AB-">AB-</ion-select-option>
-        <ion-select-option value="O+">O+</ion-select-option>
-        <ion-select-option value="O-">O-</ion-select-option>
-        <!-- Add more blood types as needed -->
-      </ion-select>
+          <ion-select [(ngModel)]="bloodType" name="bloodType" required *ngIf="user.userType==='individual'">
+            <ion-select-option [value]="user.bloodGroup">{{user.bloodGroup}}</ion-select-option>
+          </ion-select>
+          <ion-select [(ngModel)]="bloodType" name="bloodType" required *ngIf="user.userType!=='individual'">
+            <ion-select-option value="A+">A+</ion-select-option>
+            <ion-select-option value="A-">A-</ion-select-option>
+            <ion-select-option value="B+">B+</ion-select-option>
+            <ion-select-option value="B-">B-</ion-select-option>
+            <ion-select-option value="AB+">AB+</ion-select-option>
+            <ion-select-option value="AB-">AB-</ion-select-option>
+            <ion-select-option value="O+">O+</ion-select-option>
+            <ion-select-option value="O-">O-</ion-select-option>
+            <!-- Add more blood types as needed -->
+          </ion-select>
     </ion-item>
-
     <ion-item>
-      <ion-label position="floating">Message</ion-label>
-      <ion-textarea [(ngModel)]="message" name="message" rows="5"></ion-textarea>
+      <ion-label position="floating">Prefered date</ion-label>
+      <ion-datetime [(ngModel)]="date" name="date"></ion-datetime>
     </ion-item>
-
     <ion-item>
-      <ion-label>Request Blood</ion-label>
-      <ion-radio [(ngModel)]="requestBlood" name="requestBlood" value="true"></ion-radio>
+      <ion-label position="floating">Prefered Location</ion-label>
+      <ion-input [(ngModel)]="message" name="message"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Offer Blood to Match</ion-label>
-      <ion-radio [(ngModel)]="offerBlood" name="offerBlood" value="true"></ion-radio>
-    </ion-item>
-
+<ion-item>
+  <ion-label>Request as:</ion-label>
+  <ion-select [(ngModel)]="requestBlood" interface="popover" name="type">
+    <ion-select-option value="recipient">As a recipient</ion-select-option>
+    <ion-select-option value="donor">As a donor</ion-select-option>
+  </ion-select>
+</ion-item>
+    
     <ion-button expand="block" type="submit" [disabled]="!formValid()" >Submit</ion-button>
   </form>
 </ion-content>

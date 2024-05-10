@@ -37,28 +37,21 @@ const routes: Routes = [{
     loadChildren: () => import('./matching/matching.module').then( m => m.MatchingPageModule)
   },
   {
-    path: 'dashboard',component:DashboardPage,
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    path: 'dashboard/',
+    children: [
+      {
+        path: ':userId',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
+      }
+    ],
+  },
+  {
+    path: 'dashboard/:userId',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
   {
     path: 'education',
     loadChildren: () => import('./education/education.module').then( m => m.EducationPageModule)
-  },
-  {
-    path: 'feedback',
-    loadChildren: () => import('./feedback/feedback.module').then( m => m.FeedbackPageModule)
-  },
-  {
-    path: 'view-all',
-    loadChildren: () => import('./view-all/view-all.module').then( m => m.ViewAllPageModule)
-  },
-  {
-    path: 'request',
-    loadChildren: () => import('./request/request.module').then( m => m.RequestPageModule)
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
     path: 'view-requests',
@@ -82,12 +75,17 @@ const routes: Routes = [{
   },
   {
     path: 'education2',
-    loadChildren: () => import('./ducation1/education2.module').then( m => m.Education2PageModule)
+    loadChildren: () => import('./education2/education2.module').then( m => m.Education2PageModule)
   },
   {
     path: 'users',
     loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
   },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },
+
 ];
 
 @NgModule({

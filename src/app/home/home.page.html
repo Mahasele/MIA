@@ -1,20 +1,66 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<!-- home.page.html -->
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item routerLink="/home" routerDirection="root">
+          <ion-icon name="home" slot="start"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item routerLink="/about" routerDirection="root">
+          <ion-icon name="setting" slot="start"></ion-icon>
+          <ion-label>about us</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item routerLink="/education" routerDirection="root">
+          <ion-icon name="book" slot="start"></ion-icon>
+          <ion-label>Education</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-toggle>
+          <ion-button>
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle>
+      </ion-buttons>
+      <ion-title>Blood Connect</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <ion-content>
+    <div class="ion-padding">
+      <h1>Welcome to Blood Connect</h1>
+      <p>Find and request blood donations near you.</p>
+
+      <ion-card>
+        <ion-img src="../../assets/images/bb.PNG"></ion-img>
+      </ion-card>
+
+      <ion-button expand="block" routerLink="/register">
+        <ion-icon slot="start" name="person-add"></ion-icon>
+        Create account
+      </ion-button>
+
+      <ion-button expand="block" routerLink="/login">
+        <ion-icon slot="start" name="person"></ion-icon>
+       Sign in
+      </ion-button>
+    </div>
+  </ion-content>
+</div>

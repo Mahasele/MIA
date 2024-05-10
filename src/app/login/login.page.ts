@@ -33,29 +33,20 @@ export class LoginPage {
 
       if (userCredential.user) {
         const userId = userCredential.user.uid;
-
         // Check if the user is in the 'users' collection
-        const userDoc = await this.firestore.collection('donors').doc(userId).get().pipe(first()).toPromise();
+        const userDoc = await this.firestore.collection('users').doc(userId).get().pipe(first()).toPromise();
         if (userDoc && userDoc.exists) {
           const userData = userDoc.data() as { userType: string };
-          if (userData && userData.userType === 'donor') {
-            this.router.navigate(['/dashboard']); // Navigate to donor dashboard
-            return;
-          } else if (userData && userData.userType === 'hospital') {
-            this.router.navigate(['/dash']); // Navigate to hospital dashboard
+          if (userData) {
+            this.router.navigate(['/dashboard',userId]); // Navigate to donor dashboard
             return;
           } else {
-            console.error("Unknown user type:", userData.userType);
+            this.router.navigate(['/home']);
           }
         }
 
         // Check if the user is in the 'hospitals' collection
-        const hospitalDoc = await this.firestore.collection('hospitals').doc(userId).get().pipe(first()).toPromise();
-        if (hospitalDoc && hospitalDoc.exists) {
-          // Navigate to hospital dashboard
-          this.router.navigate(['dash']);
-          return;
-        }
+      
 
         console.error("User data not found in Firestore.");
       } else {

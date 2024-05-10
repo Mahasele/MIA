@@ -2,26 +2,78 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <!-- Back button to navigate to the login page -->
-      <ion-back-button defaultHref="/login"></ion-back-button>
+      <ion-back-button [defaultHref]="'/dashboard/'+id"></ion-back-button>
     </ion-buttons>
     <ion-title>Upcoming Events</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" style="--background: maroon;">
+<ion-content class="ion-padding">
   <!-- Dropdown menu for navigation options -->
   <ion-item>
-    <ion-label>Go to</ion-label>
+    <ion-label>Check</ion-label>
     <ion-select (ionChange)="navigateTo($event.detail.value)">
-      <ion-select-option value="blood-requests">Blood Requests</ion-select-option>
-      <ion-select-option value="matching">Matching-Donors</ion-select-option>
-      <ion-select-option value="education">Tips on Donation</ion-select-option>
-      <ion-select-option value="feedback">Feedback</ion-select-option>
+      <ion-select-option value="upcoming">Upcoming appointsments</ion-select-option>
+      <ion-select-option value="previous">Previous Appointments</ion-select-option>
     </ion-select>
   </ion-item>
-  
   <!-- Main content area -->
-  <ion-card *ngFor="let event of upcomingEvents" (click)="viewEventDetails(event)">
+  <ion-list class="ion-margin-top" *ngIf="selected!=='previous'">
+    <h2>Upcoming appointsments</h2>
+    <ion-item *ngFor="let app of upcomingAppointments">
+      <ion-label>
+        <h2>{{app.donorId?'Donor: '+app.donor:'Recipient: '+app.recipient}}</h2>
+        <p><strong>Donation Blood Type:</strong> {{user.bloodGroup}}</p>
+        <p><strong>Location:</strong> {{ app.appointmentLocation }}</p>
+        <p><strong>Date:</strong> {{ app.appoimentDate}}</p>
+        <ion-button expand="block" color="danger"
+          (click)="!app.donorId?cancelAppointment({
+              donorid:id,
+              recipientUid:app.recipientUid,
+              allId:app.allId,
+              recipientId:app.recipientId,
+              donorUid:app.id
+              }):cancelAppointment({
+              donorid:app.donorId,
+              recipientUid:app.id,
+              allId:app.allId,
+              recipientId:id,
+              donorUid:app.donorUid
+              })">Cancel</ion-button>
+        <ion-button expand="block" color="success"
+          (click)="!app.donorId?doneAppointment({
+              donorid:id,
+              recipientUid:app.recipientUid,
+              allId:app.allId,
+              recipientId:app.recipientId,
+              donorUid:app.id
+              }):doneAppointment({
+              donorid:app.donorId,
+              recipientUid:app.id,
+              allId:app.allId,
+              recipientId:user.id,
+              donorUid:app.donorUid
+              })">Done</ion-button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list class="ion-margin-top" *ngIf="selected==='previous'">
+    <h2>Previous appointsments</h2>
+    <ion-item *ngFor="let app of previousAppointments">
+      <ion-label>
+        <h2>{{app.donorId?'Donor: '+app.donor:'Recipient: '+app.recipient}}</h2>
+        <p><strong>Donation Blood Type:</strong> {{user.bloodGroup}}</p>
+        <p><strong>Location:</strong> {{ app.appointmentLocation }}</p>
+        <p><strong>Date:</strong> {{ app.appoimentDate}}</p>
+        <p>Status: {{app.status}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <h2>Big Events</h2>
+    <ion-col size="12" *ngFor="let event of upcomingEvents">
+      <ion-card>
     <ion-card-header>
       <ion-card-title>{{ event.title }}</ion-card-title>
     </ion-card-header>
@@ -32,4 +84,7 @@
       <p><strong>Location:</strong> {{ event.location }}</p>
     </ion-card-content>
   </ion-card>
+    </ion-col>
+  </ion-row>
+  
 </ion-content>

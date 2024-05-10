@@ -6,11 +6,30 @@
     margin: 0 auto;
     width: 90%;
   }
+  ion-toolbar{
+    --background: rgb(235, 108, 108);
+    ion-button {
+        --box-shadow: none;
+        --background: transparent;
+        color: #fff;
+      }
+  }
   ion-content {
+    .inactive {
+        border: 1px solid #f4f5f8;
+        color: #000;
+      }
+    
+      .active {
+        color: #fff;
+        background-color: var(--ion-color-danger);
+        ;
+      };
     display: flex; /* Use flexbox */
     justify-content: center;
-    --background: rgb(235, 108, 108); /* Align content horizontally to the center */
+     /* Align content horizontally to the center */
     align-items: center; /* Align content vertically to the center */
     height: 80vh; /* Set content height to full viewport height */
   }
+
   

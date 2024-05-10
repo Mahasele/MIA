@@ -1,11 +1,21 @@
+
+ion-toolbar {
+  --ion-background-color: maroon;
+  color: #fff;
+}
 ion-content {
-    --background: maroon;
-  }
+  --background:#fff;
+}
+
+
   
   ion-card {
     margin-bottom: 20px;
   }
-  
+  h1{
+    text-align: center;
+    text-decoration: underline;
+  }
   ion-card ion-img {
     max-width: 100%;
     height: 200px; /* Adjust height as needed */

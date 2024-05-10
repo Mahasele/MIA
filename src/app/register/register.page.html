@@ -1,24 +1,22 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
-    </ion-buttons>
+  <ion-toolbar>
+    <ion-button slot="start" class="ion-no-padding">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-button>
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content class="ion-padding">
-
-  
+    <ion-item>
     <ion-label>Register as:</ion-label>
     <ion-select [(ngModel)]="userType" interface="popover">
-      <ion-select-option value="donor">Donor</ion-select-option>
+      <ion-select-option value="individual">Individual</ion-select-option>
       <ion-select-option value="hospital">Hospital/Blood Bank</ion-select-option>
     </ion-select>
-  
-
-  <div *ngIf="userType === 'donor'">
+    </ion-item>
+  <div *ngIf="userType === 'individual'">
     <!-- Donor registration fields -->
     <ion-item>
       <ion-label position="floating" aria-label="Name">Name</ion-label>
@@ -41,7 +39,7 @@
 
     <!-- Date of Birth -->
     <ion-item>
-      <ion-label position="floating" aria-label="Date of Birth">Date of Birth</ion-label>
+      <ion-label position="floating" class="date" aria-label="Date of Birth">Date of Birth</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dob"></ion-datetime>
     </ion-item>
     <ion-item *ngIf="registerClicked && !dob">
@@ -118,7 +116,7 @@
     </ion-item>
 
     <!-- Register button -->
-    <ion-button (click)="register()" expand="block" color="primary">Register</ion-button>
+    <ion-button (click)="register()" expand="block">Register</ion-button>
   </div>
 
   <div *ngIf="userType === 'hospital'">
@@ -199,7 +197,7 @@
     </ion-item>
 
     <!-- Register button -->
-    <ion-button (click)="register()" expand="block" color="primary">Register</ion-button>
+    <ion-button (click)="register()" expand="block">Register</ion-button>
   </div>
 
 </ion-content>

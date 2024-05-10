@@ -1,8 +1,23 @@
+ion-toolbar {
+  --background: linear-gradient(135deg, #ff416c, #ff4b2b);
+
+  ion-button {
+    --box-shadow: none;
+    --background: transparent;
+    color: #fff;
+  }
+
+  ion-title {
+    color: #fff;
+  }
+}
+
 ion-content {
-    display: flex; /* Use flexbox */
+    display: flex; 
     justify-content: center;
-    --background: rgb(219, 44, 44); /* Align content horizontally to the center */
-    align-items: center; /* Align content vertically to the center */
-    height: 80vh; /* Set content height to full viewport height */
+   // --background: rgb(219, 44, 44); 
+   ion-button {
+    --background: linear-gradient(135deg, #ff416c, #ff4b2b);
+   }
   }
  

@@ -1,0 +1,17 @@
+ion-header {
+    ion-toolbar {
+        --background: maroon;
+        color: #fff;
+
+        ion-button {
+            --background: transparent;
+            --box-shadow: none;
+        }
+
+        /* Set background color to maroon */
+    }
+
+}
+ion-button {
+--background: maroon;
+}

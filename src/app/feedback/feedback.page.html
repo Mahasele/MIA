@@ -1,26 +1,23 @@
 <ion-header>
-  <ion-toolbar color="maroon"> 
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
-    </ion-buttons>
+  <ion-toolbar> 
+    <ion-button slot="start" class="ion-no-padding">
+      <ion-back-button [defaultHref]="'/dashboard/'+id"></ion-back-button>
+    </ion-button>
     <ion-title>
       Feedback
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content class="ion-padding ion-content-fit"> 
-  <ion-list class="ion-text-center"> 
-    <ion-item>
-      <ion-label position="stacked">Feedback</ion-label>
-      <ion-textarea rows="4" [(ngModel)]="feedback"></ion-textarea>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Email (Optional)</ion-label>
-      <ion-input type="email" [(ngModel)]="email"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <ion-button expand="block" (click)="submitFeedback()" color="maroon">Submit</ion-button>
+  <form>
+    <ion-title text-center>FeedBack</ion-title>
+    <div class="wrap">
+      <ion-icon name="person"></ion-icon><ion-input placeholder="Enter name" [(ngModel)]="email" name="name"></ion-input>
+    </div>
+  
+    <ion-textarea placeholder="Message" [(ngModel)]="feedback" name="text"></ion-textarea>
+    <ion-button expand="block" [disabled]="feedback.trim()===''|| email.trim()===''"
+      (click)="submitFeedback()">Submit</ion-button>
+  </form>
 </ion-content>
+

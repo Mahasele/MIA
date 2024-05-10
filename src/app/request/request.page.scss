@@ -3,9 +3,21 @@ Copy code
 ion-content {
   --ion-background-color: maroon; 
 }
-ion-content {
-    --background: rgb(247, 119, 119);
-  }
+
+    ion-header {
+      ion-toolbar {
+        --background: maroon;
+        color: #fff;
+  
+        ion-button {
+          --background: transparent;
+          --box-shadow: none;
+        }
+  
+        /* Set background color to maroon */
+      }
+  
+    }
   
 ion-button {
   --ion-color: maroon; 
