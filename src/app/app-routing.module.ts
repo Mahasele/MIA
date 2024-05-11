@@ -21,7 +21,7 @@ const routes: Routes = [{
  
   {
     path: '',
-    redirectTo: 'login', // Redirect to register page by default
+    redirectTo: 'home', // Redirect to register page by default
     pathMatch: 'full'
   },
   {

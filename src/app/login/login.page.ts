@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth'; // Import AngularFi
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { first } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
+import { FirebaseError } from 'firebase/app';
 
 
 @Component({
@@ -32,7 +33,6 @@ export class LoginPage {
   async login() {
     try {
       const userCredential = await this.afAuth.signInWithEmailAndPassword(this.email, this.password);
-
       if (userCredential.user) {
         const userId = userCredential.user.uid;
         // Check if the user is in the 'users' collection
@@ -46,30 +46,26 @@ export class LoginPage {
             this.router.navigate(['/home']);
           }
         }
-
-        // Check if the user is in the 'hospitals' collection
-      
-
-        console.error("User data not found in Firestore.");
       } else {
-        console.error("User credential is null.");
+        
       }
-    } catch (error: any) {
-      console.error('Error logging in:', error);
-      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+    } catch (error:any) { 
+      
+      if (error.code === 'auth/invalid-credential') {
+        console.log("User credential is null.");
         this.tost.create({
           duration:2000,
           position:'bottom',
           message:'Invalid email or password'
-        })
+        }).then(e=>e.present())
         this.errorMessage = 'Invalid email or password';
       } else {
         this.tost.create({
           duration: 2000,
           position: 'bottom',
           message: 'Fill in all fields.'
-        })
-        this.errorMessage = '';
+        }).then(e => e.present())
+      
       }
     }
   }
